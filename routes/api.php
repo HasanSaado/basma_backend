@@ -25,3 +25,25 @@ Route::group([
   Route::get('profile', 'AuthController@profile');
   Route::post('refresh', 'AuthController@refresh');
 });
+
+Route::group([
+  'middleware' => 'api',
+  'namespace' => 'App\Http\Controllers',
+  'prefix' => 'customer'
+], function($router) {
+  Route::post('login', 'CustomerController@login');
+  Route::post('register', 'CustomerController@register');
+  Route::get('profile', 'CustomerController@profile');
+  Route::post('refresh', 'CustomerController@refresh');
+  Route::get('index', 'CustomerController@index');
+  Route::post('logout', 'CustomerController@logout');
+});
+
+Route::group([
+  'middleware' => 'api',
+  'namespace' => 'App\Http\Controllers',
+  'prefix' => 'login'
+], function($router) {
+  Route::get('index', 'LoginController@index');
+  Route::post('add', 'LoginController@add');
+});
